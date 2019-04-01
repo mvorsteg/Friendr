@@ -24,7 +24,7 @@ import com.vorsteghall.swiper.Matches.MatchesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-//HEY SEXY
+//HEY SEXY boi
 public class MainActivity extends AppCompatActivity {
 
     private cards cards_data[];
