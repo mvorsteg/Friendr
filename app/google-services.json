@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "460818833502",
+    "firebase_url": "https://friendr-d587a.firebaseio.com",
+    "project_id": "friendr-d587a",
+    "storage_bucket": "friendr-d587a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460818833502:android:1d8c04e8f152fe24",
+        "android_client_info": {
+          "package_name": "com.vorsteghall.swiper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460818833502-b40djmo2kg8qqj9v937e6sg5p27k82i6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vorsteghall.swiper",
+            "certificate_hash": "c7d86838a7eeee4c1257200ba927d817083a3c7a"
+          }
+        },
+        {
+          "client_id": "460818833502-bfmbj8r5kacq8dnqec1s9dah45n598hk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsN9hG29hNPiAxdYpeWgtGFK_pucTPRJ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460818833502-bfmbj8r5kacq8dnqec1s9dah45n598hk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
