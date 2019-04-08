@@ -29,8 +29,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button mRegister;
     private EditText mEmail, mPassword, mName;
 
-    private RadioGroup mRadioGroup;
-
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
 
@@ -61,17 +59,10 @@ public class RegistrationActivity extends AppCompatActivity {
         mPassword = (EditText) findViewById(R.id.password);
         mName = (EditText) findViewById(R.id.name);
 
-        mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int selectId = mRadioGroup.getCheckedRadioButtonId();
-
-                final RadioButton radioButton = (RadioButton) findViewById(selectId);
-                if (radioButton.getText() == null){
-                    return;
-                }
 
                 final String email = mEmail.getText().toString();
                 final String password = mPassword.getText().toString();
@@ -87,7 +78,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
                             Map userInfo = new HashMap<>();
                             userInfo.put("name", name);
-                            userInfo.put("sex", radioButton.getText().toString());
+                            userInfo.put("sex", "Male");
                             userInfo.put("profileImageUrl", "default");
 
 
