@@ -35,7 +35,7 @@ import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private EditText mNameField, mPhoneField;
+    private EditText mNameField, mBioField;
 
     private Button mBack, mConfirm;
 
@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
 
-    private String userId, name, phone, profileImageUrl, userSex;
+    private String userId, name, bio, profileImageUrl, userSex;
 
     private Uri resultUri;
 
@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         mNameField = (EditText) findViewById(R.id.name);
-        mPhoneField = (EditText) findViewById(R.id.phone);
+        mBioField = (EditText) findViewById(R.id.bio);
 
         mProfileImage = (ImageView) findViewById(R.id.profileImage);
 
@@ -101,12 +101,10 @@ public class SettingsActivity extends AppCompatActivity {
                         mNameField.setText(name);
                     }
                     if (map.get("phone") != null){
-                        phone = map.get("phone").toString();
-                        mPhoneField.setText(phone);
+                        bio = map.get("bio").toString();
+                        mBioField.setText(bio);
                     }
-                    if (map.get("sex") != null){
-                        mPhoneField.setText(userSex);
-                    }
+
                     Glide.clear(mProfileImage);
                     if (map.get("profileImageUrl") != null){
                         //Log.d("DCCDebug", "DFFFFFF");
@@ -136,11 +134,11 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void saveUserInformation() {
         name = mNameField.getText().toString();
-        phone = mPhoneField.getText().toString();
+        bio = mBioField.getText().toString();
         Log.d("DCCDebug", "OOOOOOOOOOOOOOOOO");
         Map userInfo = new HashMap();
         userInfo.put("name", name);
-        userInfo.put("phone", phone);
+        userInfo.put("bio", bio);
         mUserDatabase.updateChildren(userInfo);
         if(resultUri != null){
             Log.d("DCCDebug", "booog");
