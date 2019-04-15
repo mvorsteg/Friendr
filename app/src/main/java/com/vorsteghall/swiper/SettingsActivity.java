@@ -100,7 +100,7 @@ public class SettingsActivity extends AppCompatActivity {
                         name = map.get("name").toString();
                         mNameField.setText(name);
                     }
-                    if (map.get("phone") != null){
+                    if (map.get("bio") != null){
                         bio = map.get("bio").toString();
                         mBioField.setText(bio);
                     }
