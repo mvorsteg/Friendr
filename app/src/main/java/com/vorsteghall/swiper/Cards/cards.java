@@ -1,5 +1,7 @@
 package com.vorsteghall.swiper.Cards;
 
+import android.util.Log;
+
 public class cards {
     private String userId;
     private String name;
@@ -10,7 +12,11 @@ public class cards {
         this.userId = userId;
         this.name = name;
         this.profileImageUrl = profileImageUrl;
-        this.bio = bio;
+        if (bio == null || bio.isEmpty()){
+            this.bio = "no bio given";
+        } else {
+            this.bio = bio;
+        }
 
     }
 
@@ -38,6 +44,7 @@ public class cards {
         this.profileImageUrl = profileImageUrl;
     }
     public String getBio() {
+        Log.d("DCCDebug","this is the bio: "+bio);
         return bio;
     }
 

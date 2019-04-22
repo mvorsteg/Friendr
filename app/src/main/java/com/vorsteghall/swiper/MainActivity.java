@@ -5,8 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private String oppositeUserSex;
     private String currentUid;
     private DatabaseReference usersDb;
+    private TextView bio;
 
     ListView listView;
     List<cards> rowItems;
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         currentUid = mAuth.getCurrentUser().getUid();
         //Log.d("DebugDCC", "aaaaaaaa aac");
 
-
+        bio = findViewById(R.id.bio);
         checkUserSex();
         //Log.d("DebugDCC", "bbb 8");
         rowItems = new ArrayList<>();
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         arrayAdapter = new arrayAdapter(this, R.layout.item, rowItems);
 
-        SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
+        final SwipeFlingAdapterView flingContainer = (SwipeFlingAdapterView) findViewById(R.id.frame);
         //Log.d("DebugDCC", "c 12dq");
         flingContainer.setAdapter(arrayAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 cards obj = (cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("nope").child(currentUid).setValue(true);
-
+                arrayAdapter.updateBio();
                 Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
             }
 
@@ -97,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("yeps").child(currentUid).setValue(true);
                 isConnectionMatch(userId);
-
+                arrayAdapter.updateBio();
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
             }
 
@@ -110,6 +113,17 @@ public class MainActivity extends AppCompatActivity {
             public void onScroll(float scrollProgressPercent) {
 
             }
+
+        });
+
+        bio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean vis = bio.getVisibility() == View.VISIBLE;
+                Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
+                bio.setVisibility(vis?  View.GONE: View.VISIBLE);
+                flingContainer.setVisibility(vis? View.VISIBLE: View.GONE);
+            }
         });
 
 
@@ -117,7 +131,14 @@ public class MainActivity extends AppCompatActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int itemPosition, Object dataObject) {
+                boolean vis = bio.getVisibility() == View.VISIBLE;
                 Toast.makeText(MainActivity.this, "click", Toast.LENGTH_SHORT).show();
+                bio.setVisibility(vis?  View.GONE: View.VISIBLE);
+                bio.setText(arrayAdapter.getBio());
+                Log.d("DCCDebug", "msg: "+arrayAdapter.getBio());
+                flingContainer.setVisibility(vis? View.VISIBLE: View.GONE);
+
+
             }
         });
 
