@@ -33,7 +33,6 @@ public class arrayAdapter extends ArrayAdapter<cards> {
 
     public View getView(int position, View convertView, ViewGroup parent){
         cards card_item = getItem(position);
-        Log.d("DCCDebug","aaa");
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
         }
@@ -58,8 +57,17 @@ public class arrayAdapter extends ArrayAdapter<cards> {
 
     public String getBio(){ return bio.getLast();}
     public void updateBio(){
-        Log.d("DCCDebug",bio.size()+"");
-        bio.removeLast();
-        Log.d("DCCDebug", "H "+bio.getFirst());
+        //Log.d("DCCDebug",bio.size()+"");
+        //bio.removeLast();
+        Log.d("DCCDebug","***LOOKIN THRU BIO ***\n");
+        for (String s : bio) {
+            Log.d("DCCDebug",s.toString());
+        }
+
+        //Log.d("DCCDebug", "H "+bio.getFirst());
+    }
+
+    public void freshBio(){
+        bio.clear();
     }
 }

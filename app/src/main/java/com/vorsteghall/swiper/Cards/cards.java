@@ -44,7 +44,7 @@ public class cards {
         this.profileImageUrl = profileImageUrl;
     }
     public String getBio() {
-        Log.d("DCCDebug","this is the bio: "+bio);
+        //Log.d("DCCDebug","this is the bio: "+bio);
         return bio;
     }
 

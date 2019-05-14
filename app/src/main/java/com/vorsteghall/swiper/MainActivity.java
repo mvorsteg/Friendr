@@ -90,7 +90,9 @@ public class MainActivity extends AppCompatActivity {
                 cards obj = (cards) dataObject;
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("nope").child(currentUid).setValue(true);
-                arrayAdapter.updateBio();
+                Log.d("DCCDebug","updating");
+                arrayAdapter.freshBio();
+                //arrayAdapter.updateBio();
                 Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
             }
 
@@ -100,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                 String userId = obj.getUserId();
                 usersDb.child(userId).child("connections").child("yeps").child(currentUid).setValue(true);
                 isConnectionMatch(userId);
-                arrayAdapter.updateBio();
+
+                arrayAdapter.freshBio();
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
             }
 

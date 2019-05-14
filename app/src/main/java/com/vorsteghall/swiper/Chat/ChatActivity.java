@@ -73,31 +73,22 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void sendMessage(){
-        //Log.d("DCCDebug","sending msg");
         String sendMessageText = mSendEditText.getText().toString();
-
         if(!sendMessageText.isEmpty()){
-            //Log.d("DCCDebug","not empty");
             DatabaseReference newMessageDb = mDatabaseChat.push();
-
             Map newMessage = new HashMap();
             newMessage.put("createdByUser", currentUserId);
             newMessage.put("text", sendMessageText);
-
             newMessageDb.setValue(newMessage);
         }
-        //Log.d("DCCDebug","k pasg that");
         mSendEditText.setText(null);
     }
 
     private void getChatId(){
-        //Log.d("DCCDebug","getting id");
         mDatabaseUser.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //Log.d("DCCDebug","onDataChange");
                 if(dataSnapshot.exists()){
-                   // Log.d("DCCDebug","exists");
                     chatId = dataSnapshot.getValue().toString();
                     mDatabaseChat = mDatabaseChat.child(chatId);
                     getChatMessages();
